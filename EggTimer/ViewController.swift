@@ -14,15 +14,18 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var progressBar: UIProgressView!
     
-    let eggTimes : [String : Int] = ["Hard": 12 * 1 , "Medium": 7 * 1 , "Soft": 5 * 1]
+    let eggTimes : [String : Int] = ["Hard": 12 * 60 , "Medium": 7 * 60 , "Soft": 5 * 60]
     
     var initialCountDown : Int = 0
     var countDown : Int = 0
     var timer = Timer()
     
+    
     @IBAction func hardnessSelected(_ sender: UIButton) {
         let hardness = sender.currentTitle!
 
+        progressBar.progress = 0
+        titleLabel.text = sender.currentTitle
         if let result = eggTimes[hardness] {
             countDown = result
             initialCountDown = countDown
@@ -30,15 +33,15 @@ class ViewController: UIViewController {
         
        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
  
-        progressBar.progress = 1.0
+
     }
     
     @objc func update() {
         if (countDown > 0) {
-            print("\(countDown) seconds")
+//            print("\(countDown) seconds")
             countDown -= 1
-//            titleLabel.text = "\(countDown) s"
-            progressBar.progress = Float(countDown) / Float(initialCountDown)
+            progressBar.progress = 1 - (Float(countDown) / Float(initialCountDown))
+//            print(progressBar.progress)
         } else {
             timer.invalidate()
             titleLabel.text = "DONE!"
