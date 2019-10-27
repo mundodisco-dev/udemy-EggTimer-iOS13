@@ -10,15 +10,30 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let eggTimes = ["Hard": 12 , "Medium": 7, "Soft": 5]
+    let eggTimes : [String : Int] = ["Hard": 12 * 60 , "Medium": 7 * 60 , "Soft": 5 * 60]
+    
+    var countDown : Int = 0
+    var timer = Timer()
     
     @IBAction func hardnessSelected(_ sender: UIButton) {
-        let hardness = sender.currentTitle
+        let hardness = sender.currentTitle!
 
-        if let hardnessKey = eggTimes.index(forKey: hardness!) {
-            print(eggTimes[hardnessKey].value)
+        if let result = eggTimes[hardness] {
+            countDown = result
         }
         
+       timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        
+        
+    }
+    
+    @objc func update() {
+        if (countDown > 0) {
+            print("\(countDown) seconds")
+            countDown -= 1
+        } else {
+            timer.invalidate()
+        }
     }
     
 }
