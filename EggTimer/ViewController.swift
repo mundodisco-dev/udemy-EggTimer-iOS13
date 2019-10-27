@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -20,6 +21,7 @@ class ViewController: UIViewController {
     var countDown : Int = 0
     var timer = Timer()
     
+    var audioPlayer: AVAudioPlayer!
     
     @IBAction func hardnessSelected(_ sender: UIButton) {
         let hardness = sender.currentTitle!
@@ -45,7 +47,19 @@ class ViewController: UIViewController {
         } else {
             timer.invalidate()
             titleLabel.text = "DONE!"
+            soundAlarm()
         }
+    }
+    
+    func soundAlarm() {
+        let soundURL = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")
+        
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOf: soundURL!)
+        } catch {
+            print (error)
+        }
+        audioPlayer.play()
     }
     
 }
