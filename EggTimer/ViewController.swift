@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var progresBar: UIProgressView!
+    
     let eggTimes : [String : Int] = ["Hard": 12 * 1 , "Medium": 7 * 1 , "Soft": 5 * 1]
     
     var countDown : Int = 0
@@ -26,7 +28,7 @@ class ViewController: UIViewController {
         
        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
  
-        
+        progresBar.progress = 1.0
     }
     
     @objc func update() {

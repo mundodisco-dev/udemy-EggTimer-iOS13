@@ -122,6 +122,19 @@
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJN-th-c5K" userLabel="Timer View">
                                         <rect key="frame" x="0.0" y="332.5" width="288" height="127.5"/>
+                                        <subviews>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="q5i-wL-oqG">
+                                                <rect key="frame" x="0.0" y="61.5" width="288" height="6"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="5" id="Lbb-ou-AYf"/>
+                                                </constraints>
+                                            </progressView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="q5i-wL-oqG" secondAttribute="trailing" id="4VX-ga-PZA"/>
+                                            <constraint firstItem="q5i-wL-oqG" firstAttribute="leading" secondItem="nJN-th-c5K" secondAttribute="leading" id="Khw-aK-53a"/>
+                                            <constraint firstItem="q5i-wL-oqG" firstAttribute="centerY" secondItem="nJN-th-c5K" secondAttribute="centerY" id="uHl-rc-RcQ"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -136,6 +149,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="progresBar" destination="q5i-wL-oqG" id="8BN-Pf-AOX"/>
                         <outlet property="titleLabel" destination="XLm-5r-pSP" id="OP9-ka-46Z"/>
                     </connections>
                 </viewController>
