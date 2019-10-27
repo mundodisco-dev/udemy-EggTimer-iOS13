@@ -10,7 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let eggTimes : [String : Int] = ["Hard": 12 * 60 , "Medium": 7 * 60 , "Soft": 5 * 60]
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    let eggTimes : [String : Int] = ["Hard": 12 * 1 , "Medium": 7 * 1 , "Soft": 5 * 1]
     
     var countDown : Int = 0
     var timer = Timer()
@@ -23,7 +25,7 @@ class ViewController: UIViewController {
         }
         
        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
-        
+ 
         
     }
     
@@ -31,8 +33,10 @@ class ViewController: UIViewController {
         if (countDown > 0) {
             print("\(countDown) seconds")
             countDown -= 1
+            titleLabel.text = "\(countDown) s"
         } else {
             timer.invalidate()
+            titleLabel.text = "DONE!"
         }
     }
     
